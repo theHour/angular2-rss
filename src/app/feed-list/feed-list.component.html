@@ -1,0 +1,31 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h2 *ngIf="feed; else   ifView">Feed fetched from: {{ feed.feed.title }} </h2>
+      <ng-template #ifView>
+        <h2>Enter the url to search the feed!</h2>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<div class="container m-1 mx-auto">
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Enter rss url.." #urlEntered>
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button" (click)="getFeeds()">Search!</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="feed">
+  <div class="row">
+    <app-feed-item *ngFor="let feed of feed.items" [feedItem]="feed" class="col-lg-4">Feed list will go here!</app-feed-item>
+    <!--<div class="col-12" *ngIf="feed">
+      <app-feed-list [items]="feed.items">Feed List will go here!!</app-feed-list>
+    </div>-->
+  </div>
+</div>
